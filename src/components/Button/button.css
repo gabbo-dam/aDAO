@@ -1,0 +1,36 @@
+.wbutton {
+  width: 100%;
+  background-color: none;
+  border-radius: 10px;
+  color: #ee2529;
+  border: 1px solid #ee2529;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 10px;
+  font-size: 14px;
+  padding: 10px 55px;
+}
+
+.rbutton {
+  width: 100%;
+  background-color: #ee2529;
+  border-radius: 10px;
+  color: #f5eede;
+  border: 1px solid #ffffff59;
+  text-align: center;
+  padding: 10px 55px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 7px;
+  font-size: 14px;
+}
+
+.labelButton {
+  color: #010a35;
+  cursor: pointer;
+  display: inline;
+
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+}

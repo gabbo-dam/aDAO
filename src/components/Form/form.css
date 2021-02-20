@@ -1,0 +1,43 @@
+.form {
+  padding: 30px;
+  background: #ffffff;
+  color: #ee2529;
+  border-radius: 10px;
+  /* border: 1px solid #abffff; */
+  margin-bottom: 20px;
+}
+
+.form h4 {
+  color: #010a35;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: capitalize;
+}
+.form p {
+  color: #010a35;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.numberSpan {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  text-transform: capitalize;
+
+  color: #ee2529;
+}
+.textSpan {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: capitalize;
+
+  color: #313131;
+}
+.styledtext {
+  color: #010a35;
+  font-size: 14px;
+}

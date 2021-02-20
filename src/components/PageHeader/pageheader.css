@@ -1,0 +1,26 @@
+.pageheader {
+  margin-bottom: 10px;
+  margin-top: 20px;
+  background-color: #ffffff;
+  max-width: 248px;
+  height: 100%;
+  min-height: 66px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+}
+
+h2 {
+  color: #010a35;
+  font-weight: bold !important;
+  font-size: 18px !important;
+  margin: 0 !important;
+}
+
+.content {
+  color: #007bff;
+}
+
+.pageheaderimg {
+  margin: 0px 15px;
+}

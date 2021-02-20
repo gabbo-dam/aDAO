@@ -1,0 +1,21 @@
+.winner-title {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.form-lottery h4 {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: capitalize;
+
+  color: #010a35;
+}
+.form-lottery p {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: capitalize;
+
+  color: #313131;
+}

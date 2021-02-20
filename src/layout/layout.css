@@ -1,0 +1,9 @@
+.layout {
+  width: 100%;
+  /* max-width: 1280px; */
+  margin: 0 auto;
+
+  background-size: cover;
+  background-image: url('../images/background.svg');
+  background-color: #f5eede;
+}
