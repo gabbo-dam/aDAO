@@ -6,7 +6,7 @@ import twitter from '../../icons/Twitter.svg'
 import discord from '../../icons/Discord.svg'
 import telegram from '../../icons/Telegram.svg'
 import github from '../../icons/Github.svg'
-import bunny from '../../icons/Bunny.svg'
+// import bunny from '../../icons/Bunny.svg'
 
 function Footer() {
   return (
@@ -20,7 +20,7 @@ function Footer() {
 
         <img src={github} alt=''></img>
 
-        <img src={bunny} alt=''></img>
+        {/* <img src={bunny} alt=''></img> */}
       </StyledNav>
     </StyledFooter>
   )

@@ -39,3 +39,12 @@
   color: #010a35;
   font-size: 14px;
 }
+
+@media (max-width: 768px) {
+  .numberSpan {
+    padding: 10px 0 15px 35px !important;
+  }
+  .form3 {
+    height: 160px;
+  }
+}

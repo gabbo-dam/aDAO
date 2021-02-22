@@ -210,6 +210,10 @@ const LoterryContainer = styled.div`
   gap: 50px;
   margin: 25px auto;
   width: 70%;
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 30px;
+  }
 `
 const WinnersContainer = styled.div`
   display: grid;
