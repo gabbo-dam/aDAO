@@ -12,15 +12,18 @@ function Footer() {
   return (
     <StyledFooter>
       <StyledNav>
-        <img src={twitter} alt='Twitter'></img>
-
-        <img src={discord} alt='Discord'></img>
-
-        <img src={telegram} alt='Telegram'></img>
-
-        <img src={github} alt=''></img>
-
-        <img src={bunny} alt=''></img>
+        <a href='#'>
+          <img src={twitter} alt='Twitter'></img>
+        </a>
+        <a href='#'>
+          <img src={telegram} alt='Telegram'></img>
+        </a>
+        <a href='#'>
+          <img src={github} alt=''></img>
+        </a>
+        <a href='#'>
+          <img src={bunny} alt=''></img>
+        </a>
       </StyledNav>
     </StyledFooter>
   )
