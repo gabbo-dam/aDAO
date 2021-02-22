@@ -41,3 +41,14 @@
   color: #010a35;
   font-size: 14px;
 }
+
+@media screen and (max-width: 480px) {
+  .numberSpan {
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    text-transform: capitalize;
+    padding: 0 !important;
+    color: #f0b90b;
+  }
+}

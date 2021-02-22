@@ -847,13 +847,16 @@ const SideContainerRight = styled.div`
   }
 `
 const StakeContainer = styled.div`
-  width: 250px;
+  max-width: 250px;
 `
 const RewardsContainer = styled.div``
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `
 
 const StyledNav = styled.div`

@@ -30,7 +30,7 @@ const StyledFooter = styled.footer`
   padding-top: 35px;
   width: 100%;
   display: flex;
-  min-width: 414px;
+  // min-width: 414px;
   margin: 0 auto;
   justify-content: center;
 `
