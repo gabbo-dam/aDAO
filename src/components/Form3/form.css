@@ -22,10 +22,10 @@
 
 .numberSpan {
   font-weight: normal;
-  font-size: 26px;
+  font-size: 22px;
   line-height: 30px;
   text-transform: capitalize;
-  padding: 10px 0 15px 35px;
+  padding: 10px 0 15px 25px !important;
   color: #ffffff;
 }
 .textSpan {

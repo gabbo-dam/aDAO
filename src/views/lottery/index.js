@@ -142,7 +142,9 @@ function Lottery() {
                     <p style={{ color: 'rgba(255,255,255,0.5)' }}>Address</p>
 
                     {winnersInfo?.map((element, index) => (
-                      <div>{element.address}</div>
+                      <div style={{ fontSize: '16px', color: '#FFFFFF' }}>
+                        {element.address}
+                      </div>
                     ))}
                   </Address>
                   <Transaction>
@@ -151,14 +153,16 @@ function Lottery() {
                     </p>
 
                     {winnersInfo?.map((element, index) => (
-                      <div>{element.timestamp}</div>
+                      <div style={{ fontSize: '16px', color: '#FFFFFF' }}>
+                        {element.timestamp}
+                      </div>
                     ))}
                   </Transaction>
                   <Prize>
                     <p style={{ color: 'rgba(255,255,255,0.5)' }}>Prize </p>
 
                     {winnersInfo?.map((element, index) => (
-                      <div>
+                      <div style={{ fontSize: '16px' }}>
                         {bnToDec(element.amount).toFixed(4)} $aDAO ($
                         {bnToDec(
                           new BigNumber($888Price).times(element.amount)
