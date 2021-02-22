@@ -204,7 +204,7 @@ function Lottery() {
 }
 
 const Container = styled.div`
-  padding: 0 10%;
+  padding: 0 17% 0 10%;
 
   @media screen and (max-width: 480px) {
     padding: 30px 5%;

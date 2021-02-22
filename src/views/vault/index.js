@@ -874,6 +874,7 @@ const Grid = styled.div`
 
 const StyledNav = styled.div`
   margin-left: 20px;
+  width: 100%;
   @media (max-width: 768px) {
     display: none;
   }

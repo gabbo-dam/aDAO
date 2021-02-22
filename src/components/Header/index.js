@@ -120,6 +120,7 @@ const StyledNav = styled.div`
   display: flex;
   align-items: center;
   height: 114px;
+
   margin: 0 0 30px 0px;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.03);

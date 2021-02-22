@@ -116,11 +116,11 @@ function Header() {
 }
 
 const StyledNav2 = styled.div`
-  width: 80%;
+  width: 73%;
   display: flex;
   align-items: center;
   height: 114px;
-  margin: 30px auto;
+  margin: 30px 10% 30px 10%;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.03);
 
