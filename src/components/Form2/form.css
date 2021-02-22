@@ -1,20 +1,19 @@
-.form {
+.form2 {
   padding: 30px;
-  background: #17191c;
+
   color: #f0b90b;
   border-radius: 10px;
   /* border: 1px solid #abffff; */
-  margin-bottom: 20px;
 }
 
-.form h4 {
+.form2 h4 {
   color: #ffffff;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 16px;
   text-transform: capitalize;
 }
-.form p {
+.form2 p {
   color: #ffffff;
   font-weight: normal;
   font-size: 14px;
@@ -31,11 +30,10 @@
 }
 .textSpan {
   font-weight: normal;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
-  text-transform: capitalize;
 
-  color: #313131;
+  color: #ffffff;
 }
 .styledtext {
   color: #010a35;

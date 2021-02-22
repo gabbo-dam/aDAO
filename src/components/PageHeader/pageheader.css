@@ -1,13 +1,12 @@
 .pageheader {
-  margin-bottom: 10px;
-  margin-top: 20px;
-  background-color: #ffffff;
-  max-width: 248px;
-  height: 100%;
-  min-height: 66px;
+  background-color: #f0b90b;
+  max-width: 300px;
+  width: 100%;
+  min-height: 48px;
   display: flex;
   align-items: center;
-  border-radius: 8px;
+  justify-content: center;
+  border-radius: 20px;
 }
 
 h2 {
@@ -21,6 +20,6 @@ h2 {
   color: #007bff;
 }
 
-.pageheaderimg {
+/* .pageheaderimg {
   margin: 0px 15px;
-}
+} */

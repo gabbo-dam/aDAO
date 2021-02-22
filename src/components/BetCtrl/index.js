@@ -22,9 +22,9 @@ function BetCtrl({ label, name, balance, currentVal, onChangeHandler }) {
           {label}: {balance.toFixed(4)}
         </span>
       </Col>
-      <Col xs={2} className='text-right'>
+      {/* <Col xs={2} className='text-right'>
         <LabelButton onClickHandler={onMax}>Max</LabelButton>
-      </Col>
+      </Col> */}
       <Col sm={12} className='mt-2'>
         <Input
           name={name}

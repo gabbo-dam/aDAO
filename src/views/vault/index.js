@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useState, useEffect } from 'react'
+import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import BigNumber from 'bignumber.js'
 import {
@@ -45,6 +46,7 @@ import { NotificationManager } from 'react-notifications'
 import Page from '../../components/Page'
 import PageHeader from '../../components/PageHeader'
 import Form from '../../components/Form'
+import Form2 from '../../components/Form2'
 import Button from '../../components/Button'
 import BetCtrl from '../../components/BetCtrl'
 import Label from '../../components/Label'
@@ -55,6 +57,11 @@ import ClockLoader from 'react-spinners/ClockLoader'
 import { sendTransaction, mobileSendTransaction } from '../../$888/utils'
 import { isMobile } from 'react-device-detect'
 import './index.css'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+import Layout from '../../layout'
+
+import Label2 from '../../components/Label2'
 
 import stats from '../../icons/stadistics.svg'
 import vault from '../../icons/ox.svg'
@@ -564,302 +571,246 @@ function Vault() {
 
   return (
     <Page>
-      <PageHeader title='888 STATS' src={stats} alt={stats} />
-
-      <ClockLoader
-        css={override}
-        size={150}
-        color={'#ffff00'}
-        loading={progress}
-      />
-
       {networkId === currentNetworkId ? (
         <>
-          <Row>
-            <Col xs={12} sm={4}>
-              <Form title='TOTAL SUPPLY'>
-                <span className='numberSpan'>
-                  {bnDivdedByDecimals(totalSupply).toFormat(4)} 888
-                </span>
-              </Form>
-            </Col>
-            <Col xs={12} sm={4}>
-              <Form title='CIRCULATING SUPPLY'>
-                <span className='numberSpan'>
-                  {bnDivdedByDecimals(circulatingSupply).toFormat(4)} 888
-                </span>
-              </Form>
-            </Col>
-            <Col xs={12} sm={4}>
-              <Form title='YOUR 888 BALANCE'>
-                <span className='numberSpan'>
-                  {bnDivdedByDecimals(userBalance).toFormat(4)} 888
-                </span>
-              </Form>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12} sm={4}>
-              <Form title='MARKETCAP'>
-                <span className='numberSpan'>
-                  ${new BigNumber(marketcap).toFormat(2)}
-                </span>
-              </Form>
-            </Col>
-            <Col xs={12} sm={4}>
-              <Form title='888 PRICE'>
-                <span className='numberSpan'>
-                  ${new BigNumber($888Price).toFormat(2)}
-                </span>
-              </Form>
-            </Col>
-            <Col xs={12} sm={4}>
-              <Form title='TOTAL VALUE LOCKED'>
-                <span className='numberSpan'>
-                  ${tvl.toFormat(2)} (
-                  {bnDivdedByDecimals(totalStakedAmount).toFormat(4)} LP)
-                </span>
-              </Form>
-            </Col>
-          </Row>
+          <SideContainerLeft>
+            <PageHeader title='aDAO Stats' src='none' alt='' />
+            <div style={{ height: '30px' }}></div>
+            <ClockLoader
+              css={override}
+              size={150}
+              color={'#ffff00'}
+              loading={progress}
+            />
+            <Form title='TOTAL SUPPLY'>
+              <span className='numberSpan'>
+                {bnDivdedByDecimals(totalSupply).toFormat(4)} aDAO
+              </span>
+            </Form>
 
-          <PageHeader title='888-BNB LP VAULT' src={vault} alt={vault} />
+            <Form title='CIRCULATING SUPPLY'>
+              <span className='numberSpan'>
+                {bnDivdedByDecimals(circulatingSupply).toFormat(4)} aDAO
+              </span>
+            </Form>
 
-          <Row>
-            <Col xs={12} md={4} style={{ lineHeight: '1.3' }}>
-              <Form
+            <Form title='YOUR aDAO BALANCE'>
+              <span className='numberSpan'>
+                {bnDivdedByDecimals(userBalance).toFormat(4)} aDAO
+              </span>
+            </Form>
+
+            <Form title='MARKETCAP'>
+              <span className='numberSpan'>
+                ${new BigNumber(marketcap).toFormat(2)}
+              </span>
+            </Form>
+
+            <Form title='aDAO PRICE'>
+              <span className='numberSpan'>
+                ${new BigNumber($888Price).toFormat(2)}
+              </span>
+            </Form>
+
+            <Form title='TOTAL VALUE LOCKED'>
+              <span className='numberSpan'>
+                ${tvl.toFormat(2)} (
+                {bnDivdedByDecimals(totalStakedAmount).toFormat(4)} LP)
+              </span>
+            </Form>
+          </SideContainerLeft>
+          <div>
+            <StyledNav>
+              <Header />
+            </StyledNav>
+            <SideContainerRight>
+              <PageHeader title='aDAO-BNB LP VAULT' src='none' alt='' />
+
+              <Form2
                 title={
-                  '1-CLICK STAKING (APY: ' +
+                  'STAKE (APY: ' +
                   new BigNumber(apy).dp(2, 0).toString(10) +
                   '%)'
                 }
-                text={
-                  'Deposit BNB to earn staking rewards in 888, BIFI, CAKE and wBNB'
-                }
+                style={{ background: 'none' }}
               >
-                <Row className='vaultDiv'>
-                  <Col xs={12}>
-                    <Row>
-                      <Col md={12}>
-                        <BetCtrl
-                          label='My BNB'
-                          name='stakeAmount'
-                          balance={userBNBBalance}
-                          currentVal={values.stakeAmount}
-                          onChangeHandler={onChangeHandler}
-                        />
-                      </Col>
-                      <Col md={12}>
-                        <Button onClickHandler={onStake} color='red'>
-                          Deposite & Stake
-                        </Button>
-                      </Col>
-                      {/* <Col md={12}>
-                                                    <Label
-                                                        label='Staked'
-                                                        balance={userTotalStakedAmount.toFormat(4) + ' LP'}
-                                                    />
-                                                </Col> */}
-                      {/* <Col md={12}>
-                                                        <Label
-                                                            label='Rank (Users)'
-                                                            balance={userRank + ' (' + totalUsers + ')'}
-                                                        />
-                                                        </Col> */}
-                      <Col md={12}>
-                        <BetCtrl
-                          label='Staked LP'
-                          name='unstakeAmount'
-                          balance={userTotalStakedAmount}
-                          currentVal={values.unstakeAmount}
-                          onChangeHandler={onChangeHandler}
-                        />
-                      </Col>
-                      <Col md={12}>
-                        <Button
-                          onClickHandler={onShowConfirmModalForUnstake}
-                          color='red'
-                        >
-                          Claim & Unstake
-                        </Button>
-                      </Col>
-                    </Row>
-                  </Col>
-                </Row>
-              </Form>
-            </Col>
-            <Col xs={12} md={4}>
-              <Form
-                title='888 REWARDS'
-                text='888 Rewards are locked for 8 weeks and are 
-                claimable early for a 10% penalty that goes
-                to the DAO treasury'
-              >
-                <Row className='vaultDiv'>
-                  <Col xl={12}>
-                    <Row>
-                      <Col xl={12}>
-                        <Label
-                          label='Pending 888'
-                          balance={
-                            user$888Reward.pending
-                              ? bnDivdedByDecimals(
-                                  user$888Reward.pending
-                                ).toFormat(4) +
-                                ' ($' +
-                                bnDivdedByDecimals(pending$888Value).toFormat(
-                                  2
-                                ) +
-                                ')'
-                              : 0 + '($0)'
-                          }
-                        />
-                      </Col>
-                      <Col xl={12}>
-                        <Label
-                          label='Available 888'
-                          balance={
-                            user$888Reward.available
-                              ? bnDivdedByDecimals(
-                                  user$888Reward.available
-                                ).toFormat(4) +
-                                ' ($' +
-                                bnDivdedByDecimals(available$888Value).toFormat(
-                                  2
-                                ) +
-                                ')'
-                              : 0 + '($0)'
-                          }
-                        />
-                      </Col>
-                      <Col xl={12}>
-                        <Button
-                          onClickHandler={onClaimAvailable$888Reward}
-                          color='red'
-                        >
-                          Claim Available
-                        </Button>
-                      </Col>
-                      <Col xl={12}>
-                        <Button
-                          onClickHandler={onShowConfirmModalFor$888}
-                          color='white'
-                        >
-                          Claim Early
-                        </Button>
-                      </Col>
-                    </Row>
-                  </Col>
-                </Row>
-              </Form>
-            </Col>
-            <Col xs={12} md={4}>
-              <Form
-                title='BIFI/CAKE/WBNB REWARDS'
-                text='BIFI/CAKE/wBNB Rewards are locked for 90 
-                days and are claimable early for a 20% fee 
-                which is used to market-buy and burn 888'
-              >
-                <Row className='vaultDiv'>
-                  <Col xs={12}>
-                    <Row>
-                      <Col xs={6} md={6}>
-                        <Label label='Pending' />
-                        <Label
-                          label='WBNB'
-                          balance={
-                            userWbnbPendingReward
-                              ? userWbnbPendingReward.toFixed(4)
-                              : 0
-                          }
-                        />
-                        <Label
-                          label='BTCB'
-                          balance={
-                            userBtcbPendingReward
-                              ? userBtcbPendingReward.toFixed(4)
-                              : 0
-                          }
-                        />
-                        <Label
-                          label='BIFI'
-                          balance={
-                            userBifiPendingReward
-                              ? userBifiPendingReward.toFixed(4)
-                              : 0
-                          }
-                        />
-                      </Col>
-                      <Col xs={6} md={6}>
-                        <Label label='Available' />
-                        <Label
-                          label='WBNB'
-                          balance={
-                            userWbnbAvailableReward
-                              ? userWbnbAvailableReward.toFormat(4)
-                              : 0
-                          }
-                        />
-                        <Label
-                          label='BTCB'
-                          balance={
-                            userBtcbAvailableReward
-                              ? userBtcbAvailableReward.toFormat(4)
-                              : 0
-                          }
-                        />
-                        <Label
-                          label='BIFI'
-                          balance={
-                            userBifiAvailableReward
-                              ? userBifiAvailableReward.toFormat(4)
-                              : 0
-                          }
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col xs={12}>
-                        <Button
-                          onClickHandler={onClaimAvailableSwapReward}
-                          color='red'
-                        >
-                          Claim Available
-                        </Button>
-                      </Col>
-                      <Col xs={12}>
-                        <Button
-                          onClickHandler={onShowConfirmModalForQuarterly}
-                          color='white'
-                        >
-                          Claim Early
-                        </Button>
-                      </Col>
-                    </Row>
-                  </Col>
-                </Row>
-              </Form>
-            </Col>
-          </Row>
+                <Grid>
+                  <StakeContainer>
+                    <BetCtrl
+                      label='My BNB'
+                      name='stakeAmount'
+                      balance={userBNBBalance}
+                      currentVal={values.stakeAmount}
+                      onChangeHandler={onChangeHandler}
+                    />
+
+                    <Button onClickHandler={onStake} color='red'>
+                      Deposite / Stake
+                    </Button>
+                  </StakeContainer>
+                  <StakeContainer>
+                    <BetCtrl
+                      label='Staked LP'
+                      name='unstakeAmount'
+                      balance={userTotalStakedAmount}
+                      currentVal={values.unstakeAmount}
+                      onChangeHandler={onChangeHandler}
+                    />
+
+                    <Button
+                      onClickHandler={onShowConfirmModalForUnstake}
+                      color='red'
+                    >
+                      Claim / Unstake
+                    </Button>
+                  </StakeContainer>
+                </Grid>
+              </Form2>
+            </SideContainerRight>
+            <SideContainerRight style={{ marginTop: '40px' }}>
+              <Grid>
+                <RewardsContainer>
+                  <PageHeader title='aDAO REWARDS' src='none' alt='' />
+                  <Form2>
+                    <Grid>
+                      <Label
+                        label='Pending aDAO'
+                        balance={
+                          user$888Reward.pending
+                            ? // bnDivdedByDecimals(user$888Reward.pending).toFormat(
+                              //     4
+                              //   ) +
+                              ' $' +
+                              bnDivdedByDecimals(pending$888Value).toFormat(0) +
+                              ''
+                            : 0 + '($0)'
+                        }
+                      />
+
+                      <Label
+                        label='Available aDAO'
+                        balance={
+                          user$888Reward.available
+                            ? // bnDivdedByDecimals(
+                              //     user$888Reward.available
+                              //   ).toFormat(4) +
+                              ' $' +
+                              bnDivdedByDecimals(available$888Value).toFormat(
+                                0
+                              ) +
+                              ''
+                            : 0 + '($0)'
+                        }
+                      />
+                    </Grid>
+                    <Grid>
+                      <Button
+                        onClickHandler={onClaimAvailable$888Reward}
+                        color='white'
+                      >
+                        Claim Available
+                      </Button>
+
+                      <Button
+                        onClickHandler={onShowConfirmModalFor$888}
+                        color='red'
+                      >
+                        Claim Early
+                      </Button>
+                    </Grid>
+                  </Form2>
+                </RewardsContainer>
+                <RewardsContainer>
+                  <PageHeader title='YFI/WBTC/WETH REWARDS' src='none' alt='' />
+                  <Form2>
+                    <Grid>
+                      <Label2
+                        label='Pending'
+                        l1='WBNB'
+                        b1={
+                          userWbnbPendingReward
+                            ? userWbnbPendingReward.toFixed(4)
+                            : 0
+                        }
+                        l2='BTCB'
+                        b2={
+                          userBtcbPendingReward
+                            ? userBtcbPendingReward.toFixed(4)
+                            : 0
+                        }
+                        l3='BIFI'
+                        b3={
+                          userBifiPendingReward
+                            ? userBifiPendingReward.toFixed(4)
+                            : 0
+                        }
+                      />
+
+                      <Label2
+                        label='Available'
+                        l1='WBNB'
+                        b1={
+                          userWbnbAvailableReward
+                            ? userWbnbAvailableReward.toFormat(4)
+                            : 0
+                        }
+                        l2='BTCB'
+                        b2={
+                          userBtcbAvailableReward
+                            ? userBtcbAvailableReward.toFormat(4)
+                            : 0
+                        }
+                        l3='BIFI'
+                        b3={
+                          userBifiAvailableReward
+                            ? userBifiAvailableReward.toFormat(4)
+                            : 0
+                        }
+                      />
+                    </Grid>
+                    <Grid>
+                      <Button
+                        onClickHandler={onClaimAvailableSwapReward}
+                        color='white'
+                      >
+                        Claim Available
+                      </Button>
+
+                      <Button
+                        onClickHandler={onShowConfirmModalForQuarterly}
+                        color='red'
+                      >
+                        Claim Early
+                      </Button>
+                    </Grid>
+                  </Form2>
+                </RewardsContainer>
+              </Grid>
+            </SideContainerRight>
+            <Footer></Footer>
+          </div>
         </>
       ) : (
         <>
-          <Row>
-            <Col xs={12}>
-              <Form title='Warning'>
-                <Row>
-                  <Col xs={12} className='pt-3'>
-                    <span>Unable to connect wallet</span>
-                    <br />
-                    <span>
-                      Please change your MetaMask to access the{' '}
-                      {networkId === '56' ? 'Main' : 'Testnet'} Binance Smart Chain Testnet.
-                    </span>
-                  </Col>
-                </Row>
-              </Form>
-            </Col>
-          </Row>
+          <Layout>
+            <Row>
+              <Col xs={12}>
+                <Form title='Warning'>
+                  <Row>
+                    <Col xs={12} className='pt-3'>
+                      <span>Unable to connect wallet</span>
+                      <br />
+                      <span>
+                        Please change your MetaMask to access the{' '}
+                        {networkId === '56' ? 'Main' : 'Testnet'} Binance Smart
+                        Chain Testnet.
+                      </span>
+                    </Col>
+                  </Row>
+                </Form>
+              </Col>
+            </Row>
+          </Layout>
         </>
       )}
       {showConfirmModal && (
@@ -873,5 +824,40 @@ function Vault() {
     </Page>
   )
 }
+
+const SideContainerLeft = styled.div`
+  width: 315px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 30px 15px 20px 15px;
+  border-radius: 20px;
+  height: fit-content;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`
+const SideContainerRight = styled.div`
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 30px 15px 0 15px;
+  margin-left: 20px;
+
+  border-radius: 20px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`
+const StakeContainer = styled.div`
+  width: 250px;
+`
+const RewardsContainer = styled.div``
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+`
+
+const StyledNav = styled.div`
+  margin-left: 20px;
+`
 
 export default Vault

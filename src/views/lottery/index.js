@@ -16,9 +16,13 @@ import { bnToDec } from '../../$888/utils'
 import { Row, Col } from 'react-bootstrap'
 import PageHeader from '../../components/PageHeader'
 import Form from '../../components/Form'
+import Form2 from '../../components/Form2'
+import Form3 from '../../components/Form3'
 import 'react-notifications/lib/notifications.css'
 import Page from '../../components/Page'
 import './index.css'
+import styled from 'styled-components'
+import Label from '../../components/Label'
 
 import lottery from '../../icons/lottery.svg'
 import win from '../../icons/winners.svg'
@@ -85,99 +89,88 @@ function Lottery() {
   }, [$888Price, lotteryAmount, totalPaidOut])
 
   return (
-    <Page>
-      <PageHeader title='888 LOTTERY' src={lottery} alt={lottery} />
-
+    <Container>
       {networkId === currentNetworkId ? (
         <>
-          <Row>
-            <Col xs={12} sm={12}>
-              <Form title='How it works'>
+          <StyledContainer>
+            <StyledSection>
+              <PageHeader title='aDAO LOTTERY' src='none' alt='' />
+              <Form2 title='How it works'>
                 <span className='textSpan'>
                   We take {lotteryFee}% from the collected taxfees and put it
                   inside this lottery pool, each time the pool reaches a value
                   of {lotteryLimit} USD a random LP staker gets selected as the
                   winner. Winner takes all!
                 </span>
-              </Form>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12} sm={4}>
-              <Form title='CURRENT POOL'>
+              </Form2>
+            </StyledSection>
+          </StyledContainer>
+          <LoterryContainer>
+            <StyledContainer>
+              <Form3 title='CURRENT POOL'>
                 <span className='numberSpan'>
-                  ${bnToDec(poolValue).toFixed(2)} (
-                  {bnToDec(lotteryAmount).toFixed(4)} 888)
+                  ${bnToDec(poolValue).toFixed(2)}
                 </span>
-              </Form>
-            </Col>
-            <Col xs={12} sm={4}>
-              <Form title='TOTAL WINNERS'>
+                <div className='numberSpan'>
+                  ({bnToDec(lotteryAmount).toFixed(4)} aDAO)
+                </div>
+              </Form3>
+            </StyledContainer>
+            <StyledContainer>
+              <Form3 title='TOTAL WINNERS'>
                 <span className='numberSpan'>{winners}</span>
-              </Form>
-            </Col>
-            <Col xs={12} sm={4}>
-              <Form title='TOTAL PAID OUT'>
+              </Form3>
+            </StyledContainer>
+            <StyledContainer>
+              <Form3 title='TOTAL PAID OUT'>
                 <span className='numberSpan'>
-                  ${bnToDec(totalPaidOutValue).toFixed(2)} (
-                  {bnToDec(totalPaidOut).toFixed(4)} 888)
+                  ${bnToDec(totalPaidOutValue).toFixed(2)}
                 </span>
-              </Form>
-            </Col>
-          </Row>
+                <div className='numberSpan'>
+                  ({bnToDec(totalPaidOut).toFixed(4)} aDAO)
+                </div>
+              </Form3>
+            </StyledContainer>
+          </LoterryContainer>
+          <StyledContainer>
+            <StyledSection>
+              <PageHeader title='WINNERS' src='none' alt='' />
 
-          <PageHeader title='WINNERS' src={win} alt={win} />
+              <Form2 title=''>
+                <WinnersContainer>
+                  <Address>
+                    <p style={{ color: 'rgba(255,255,255,0.5)' }}>Address</p>
 
-          <Row>
-            <Col xs={12} md={12}>
-              <Form title=''>
-                <Row>
-                  <Col xs={4} md={4}>
-                    <Row className='winner-title'>
-                      <Col xl={12}>
-                        <p style={{ color: '#010A35' }}>ADDRESS</p>
-                      </Col>
-                    </Row>
                     {winnersInfo?.map((element, index) => (
-                      <Row className=''>
-                        <Col xl={12}>{element.address}</Col>
-                      </Row>
+                      <div>{element.address}</div>
                     ))}
-                  </Col>
-                  <Col xs={4} md={4}>
-                    <Row className='winner-title'>
-                      <Col xl={12}>
-                        <p style={{ color: '#010A35' }}>TRANSACTION TIME</p>
-                      </Col>
-                    </Row>
+                  </Address>
+                  <Transaction>
+                    <p style={{ color: 'rgba(255,255,255,0.5)' }}>
+                      Treansaction Time
+                    </p>
+
                     {winnersInfo?.map((element, index) => (
-                      <Row>
-                        <Col xl={12}>{element.timestamp}</Col>
-                      </Row>
+                      <div>{element.timestamp}</div>
                     ))}
-                  </Col>
-                  <Col xs={4} md={4}>
-                    <Row className='winner-title'>
-                      <Col xl={12}>
-                        <p style={{ color: '#010A35' }}>PRIZE </p>
-                      </Col>
-                    </Row>
+                  </Transaction>
+                  <Prize>
+                    <p style={{ color: 'rgba(255,255,255,0.5)' }}>Prize </p>
+
                     {winnersInfo?.map((element, index) => (
-                      <Row>
-                        <Col xl={12}>
-                          {bnToDec(element.amount).toFixed(4)} $888 ($
-                          {bnToDec(
-                            new BigNumber($888Price).times(element.amount)
-                          ).toFixed(2)}
-                          )
-                        </Col>
-                      </Row>
+                      <div>
+                        {bnToDec(element.amount).toFixed(4)} $aDAO ($
+                        {bnToDec(
+                          new BigNumber($888Price).times(element.amount)
+                        ).toFixed(2)}
+                        )
+                      </div>
                     ))}
-                  </Col>
-                </Row>
-              </Form>
-            </Col>
-          </Row>
+                  </Prize>
+                </WinnersContainer>
+              </Form2>
+            </StyledSection>
+          </StyledContainer>
         </>
       ) : (
         <>
@@ -190,7 +183,8 @@ function Lottery() {
                     <br />
                     <span>
                       Please change your MetaMask to access the{' '}
-                      {networkId === '56' ? 'Main' : 'Testnet'} Binance Smart Chain Testnet.
+                      {networkId === '56' ? 'Main' : 'Testnet'} Binance Smart
+                      Chain Testnet.
                     </span>
                   </Col>
                 </Row>
@@ -199,8 +193,47 @@ function Lottery() {
           </Row>
         </>
       )}
-    </Page>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  padding: 0 10%;
+
+  @media screen and (max-width: 480px) {
+    padding: 30px 5%;
+  }
+`
+const LoterryContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  margin: 25px auto;
+  width: 70%;
+`
+const WinnersContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  height: 250px;
+  overflow: auto;
+`
+
+const StyledContainer = styled.div`
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+
+  border-radius: 20px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`
+const StyledSection = styled.div`
+  padding: 30px 40px 0 40px;
+`
+
+const Address = styled.div``
+const Transaction = styled.div``
+const Prize = styled.div``
 
 export default Lottery

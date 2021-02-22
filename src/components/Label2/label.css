@@ -16,3 +16,16 @@
   font-size: 48px;
   color: #ffffff;
 }
+
+.box {
+  padding: 15px;
+}
+
+.l {
+  color: #f0b90b;
+  font-size: 14px;
+}
+.b {
+  color: #ffffff;
+  font-size: 14px;
+}

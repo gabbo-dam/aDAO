@@ -1,20 +1,19 @@
-.form {
-  padding: 30px;
-  background: #17191c;
+.form3 {
   color: #f0b90b;
   border-radius: 10px;
   /* border: 1px solid #abffff; */
-  margin-bottom: 20px;
 }
 
-.form h4 {
+.form3 h4 {
   color: #ffffff;
-  font-weight: normal;
+  font-weight: 300;
   font-size: 14px;
-  line-height: 16px;
+
   text-transform: capitalize;
+  border-bottom: 3px solid #f0b90b;
+  padding: 20px 0 15px 37px;
 }
-.form p {
+.form3 p {
   color: #ffffff;
   font-weight: normal;
   font-size: 14px;
@@ -23,19 +22,18 @@
 
 .numberSpan {
   font-weight: normal;
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 26px;
+  line-height: 30px;
   text-transform: capitalize;
-
-  color: #f0b90b;
+  padding: 10px 0 15px 35px;
+  color: #ffffff;
 }
 .textSpan {
   font-weight: normal;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
-  text-transform: capitalize;
 
-  color: #313131;
+  color: #ffffff;
 }
 .styledtext {
   color: #010a35;

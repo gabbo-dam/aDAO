@@ -1,9 +1,9 @@
 import React from 'react'
 import './form.css'
 
-function Form({ title, children, text }) {
+function Form2({ title, children, text }) {
   return (
-    <div className='form'>
+    <div className='form2'>
       <h4>{title}</h4>
       <p className='styledtext'>{text}</p>
       {children}
@@ -11,4 +11,4 @@ function Form({ title, children, text }) {
   )
 }
 
-export default Form
+export default Form2

@@ -3,28 +3,27 @@
   /* border-bottom: 1px solid #343a40; */
   padding-left: 50px !important;
   padding-right: 50px !important;
+  width: 100%;
+  display: flex;
 }
 
 .navbar-brand {
-  color: abffff !important;
   font-size: 1.8em !important;
   font-weight: 800;
 }
 
 .nav-link {
-  color: #010a35 !important;
+  color: #ffffff !important;
   text-align: center;
   font-size: 14px !important;
-  font-weight: 700;
-  padding-right: 20px !important;
-  padding-left: 0px !important;
+  font-weight: 500;
 }
 
 .menu-item {
   font-size: 14px;
-  color: #010a35;
-  padding-right: 20px;
-  font-weight: 700;
+  color: #ffffff;
+
+  font-weight: 500;
 }
 
 a:link {
@@ -65,8 +64,8 @@ a:active {
 }
 
 .mr-auto {
-  justify-content: left !important;
-  align-items: center !important;
+  justify-content: space-around !important;
+  align-items: center;
   width: 100% !important;
   margin-left: 55px;
 }
