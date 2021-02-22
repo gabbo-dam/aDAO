@@ -573,6 +573,9 @@ function Vault() {
     <Page>
       {networkId === currentNetworkId ? (
         <>
+          <MobileNav>
+            <Header />
+          </MobileNav>
           <SideContainerLeft>
             <PageHeader title='aDAO Stats' src='none' alt='' />
             <div style={{ height: '30px' }}></div>
@@ -865,6 +868,14 @@ const StyledNav = styled.div`
   margin-left: 20px;
   @media (max-width: 768px) {
     display: none;
+  }
+`
+
+const MobileNav = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
   }
 `
 
