@@ -108,25 +108,25 @@ function Lottery() {
           <LoterryContainer>
             <StyledContainer>
               <Form3 title='CURRENT POOL'>
-                <span className='numberSpan'>
+                <span className='numberSpan2'>
                   ${bnToDec(poolValue).toFixed(2)}
                 </span>
-                <div className='numberSpan'>
+                <div className='numberSpan2'>
                   ({bnToDec(lotteryAmount).toFixed(4)} aDAO)
                 </div>
               </Form3>
             </StyledContainer>
             <StyledContainer>
               <Form3 title='TOTAL WINNERS'>
-                <span className='numberSpan'>{winners}</span>
+                <span className='numberSpan2'>{winners}</span>
               </Form3>
             </StyledContainer>
             <StyledContainer>
               <Form3 title='TOTAL PAID OUT'>
-                <span className='numberSpan'>
+                <span className='numberSpan2'>
                   ${bnToDec(totalPaidOutValue).toFixed(2)}
                 </span>
-                <div className='numberSpan'>
+                <div className='numberSpan2'>
                   ({bnToDec(totalPaidOut).toFixed(4)} aDAO)
                 </div>
               </Form3>
@@ -180,19 +180,21 @@ function Lottery() {
         <>
           <Row>
             <Col xs={12}>
-              <Form title='Warning'>
-                <Row>
-                  <Col xs={12} className='pt-3'>
-                    <span>Unable to connect wallet</span>
-                    <br />
-                    <span>
-                      Please change your MetaMask to access the{' '}
-                      {networkId === '56' ? 'Main' : 'Testnet'} Binance Smart
-                      Chain Testnet.
-                    </span>
-                  </Col>
-                </Row>
-              </Form>
+              <FormContainer>
+                <Form2 title='Warning'>
+                  <Row>
+                    <Col xs={12} className='pt-3'>
+                      <span>Unable to connect wallet</span>
+                      <br />
+                      <span>
+                        Please change your MetaMask to access the{' '}
+                        {networkId === '56' ? 'Main' : 'Testnet'} Binance Smart
+                        Chain Testnet.
+                      </span>
+                    </Col>
+                  </Row>
+                </Form2>
+              </FormContainer>
             </Col>
           </Row>
         </>
@@ -238,6 +240,13 @@ const StyledContainer = styled.div`
 `
 const StyledSection = styled.div`
   padding: 30px 40px 0 40px;
+`
+
+const FormContainer = styled.div`
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 30px 15px 0 15px;
+  border-radius: 20px;
 `
 
 const Address = styled.div``

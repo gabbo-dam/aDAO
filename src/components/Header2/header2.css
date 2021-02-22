@@ -86,4 +86,7 @@ a:active {
     font-size: 1.5em !important;
     font-weight: 600;
   }
+  .mr-auto {
+    margin-left: 0px;
+  }
 }

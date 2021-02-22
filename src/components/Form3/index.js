@@ -1,5 +1,5 @@
 import React from 'react'
-import './form.css'
+import './form3.css'
 
 function Form2({ title, children, text }) {
   return (

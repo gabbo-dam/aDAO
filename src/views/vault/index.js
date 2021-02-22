@@ -796,7 +796,8 @@ function Vault() {
         </>
       ) : (
         <>
-          <Layout>
+          <ConnectWalletDiv>
+            <Header />
             <Row>
               <Col xs={12}>
                 <FormContainer>
@@ -816,7 +817,8 @@ function Vault() {
                 </FormContainer>
               </Col>
             </Row>
-          </Layout>
+            <Footer />
+          </ConnectWalletDiv>
         </>
       )}
       {showConfirmModal && (
@@ -858,6 +860,9 @@ const StakeContainer = styled.div`
   max-width: 250px;
 `
 const RewardsContainer = styled.div``
+const ConnectWalletDiv = styled.div`
+  width: 100%;
+`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);

@@ -9,7 +9,6 @@
   font-weight: 300;
   font-size: 14px;
 
-  text-transform: capitalize;
   border-bottom: 3px solid #f0b90b;
   padding: 20px 0 15px 37px;
 }
@@ -20,11 +19,11 @@
   line-height: 16px;
 }
 
-.numberSpan {
+.numberSpan2 {
   font-weight: normal;
   font-size: 22px;
   line-height: 30px;
-  text-transform: capitalize;
+
   padding: 10px 0 15px 25px !important;
   color: #ffffff;
 }

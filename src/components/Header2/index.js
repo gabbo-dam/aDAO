@@ -7,7 +7,7 @@ import { setAddress, setNetworkId } from '../../redux/actions'
 import styled from 'styled-components'
 
 import logo from '../../images/logo.svg'
-import './header.css'
+import './header2.css'
 import { useWallet } from 'use-wallet'
 
 function Header() {
@@ -37,7 +37,7 @@ function Header() {
   }
 
   return (
-    <StyledNav>
+    <StyledNav2>
       <Navbar vbar='true' collapseOnSelect expand='lg'>
         <Navbar.Brand href='/'>
           <h1 style={{ color: '#F0B90B' }}>Logo</h1>
@@ -111,21 +111,22 @@ function Header() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-    </StyledNav>
+    </StyledNav2>
   )
 }
 
-const StyledNav = styled.div`
-  width: 100%;
+const StyledNav2 = styled.div`
+  width: 80%;
   display: flex;
   align-items: center;
   height: 114px;
-  margin: 0 0 30px 0px;
+  margin: 30px auto;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.03);
 
   @media (max-width: 768px) {
     height: 100%;
+    width: 90%;
   }
 `
 

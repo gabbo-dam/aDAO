@@ -38,7 +38,6 @@ const StyledFooter = styled.footer`
   justify-content: center;
 `
 const StyledNav = styled.div`
-  width: 40%;
   display: flex;
   min-width: 414px;
   margin: 0 auto;
