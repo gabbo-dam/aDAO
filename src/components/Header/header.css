@@ -22,7 +22,7 @@
 .menu-item {
   font-size: 14px;
   color: #ffffff;
-
+  padding: 8px;
   font-weight: 500;
 }
 
@@ -66,8 +66,8 @@ a:active {
 .mr-auto {
   justify-content: space-around !important;
   align-items: center;
-  width: 100% !important;
-  margin-left: 55px;
+  width: 45% !important;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 480px) {

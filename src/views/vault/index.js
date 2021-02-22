@@ -723,6 +723,7 @@ function Vault() {
                     </Grid>
                   </Form2>
                 </RewardsContainer>
+
                 <RewardsContainer>
                   <PageHeader title='YFI/WBTC/WETH REWARDS' src='none' alt='' />
                   <Form2>
@@ -798,19 +799,21 @@ function Vault() {
           <Layout>
             <Row>
               <Col xs={12}>
-                <Form title='Warning'>
-                  <Row>
-                    <Col xs={12} className='pt-3'>
-                      <span>Unable to connect wallet</span>
-                      <br />
-                      <span>
-                        Please change your MetaMask to access the{' '}
-                        {networkId === '56' ? 'Main' : 'Testnet'} Binance Smart
-                        Chain Testnet.
-                      </span>
-                    </Col>
-                  </Row>
-                </Form>
+                <FormContainer>
+                  <Form2 title='Warning'>
+                    <Row>
+                      <Col xs={12} className='pt-3'>
+                        <span>Unable to connect wallet</span>
+                        <br />
+                        <span>
+                          Please change your MetaMask to access the{' '}
+                          {networkId === '56' ? 'Main' : 'Testnet'} Binance
+                          Smart Chain Testnet.
+                        </span>
+                      </Col>
+                    </Row>
+                  </Form2>
+                </FormContainer>
               </Col>
             </Row>
           </Layout>
@@ -869,6 +872,12 @@ const StyledNav = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
+`
+const FormContainer = styled.div`
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 30px 15px 0 15px;
+  border-radius: 20px;
 `
 
 const MobileNav = styled.div`
