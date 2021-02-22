@@ -215,7 +215,7 @@ const LoterryContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 50px;
   margin: 25px auto;
-  width: 70%;
+  width: 100%;
   @media (max-width: 768px) {
     grid-template-columns: repeat(1, 1fr);
     gap: 30px;
