@@ -844,6 +844,8 @@ const SideContainerRight = styled.div`
   border-radius: 20px;
   @media (max-width: 768px) {
     width: 100%;
+    margin-left: 0;
+    margin-top 15px;
   }
 `
 const StakeContainer = styled.div`
@@ -861,6 +863,9 @@ const Grid = styled.div`
 
 const StyledNav = styled.div`
   margin-left: 20px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 export default Vault

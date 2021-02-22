@@ -30,7 +30,7 @@ const StyledFooter = styled.footer`
   padding-top: 35px;
   width: 100%;
   display: flex;
-  // min-width: 414px;
+
   margin: 0 auto;
   justify-content: center;
 `
@@ -40,6 +40,9 @@ const StyledNav = styled.div`
   min-width: 414px;
   margin: 0 auto;
   justify-content: space-around;
+  @media (max-width: 768px) {
+    min-width: 100%;
+  }
 `
 
 export default Footer
