@@ -622,7 +622,7 @@ function Vault() {
               </span>
             </Form>
           </SideContainerLeft>
-          <div>
+          <div style={{ width: '95%' }}>
             <StyledNav>
               <Header />
             </StyledNav>
@@ -818,9 +818,8 @@ function Vault() {
                 </FormContainer>
               </Col>
             </Row>
-            <Container>
-              <Footer />
-            </Container>
+
+            <Footer />
           </ConnectWalletDiv>
         </>
       )}
@@ -863,16 +862,10 @@ const StakeContainer = styled.div`
   max-width: 250px;
 `
 const RewardsContainer = styled.div``
-const Container = styled.div`
-  margin-left: 9.5%;
-  @media (max-width: 768px) {
-    margin-left: 0;
-  }
-`
 
 const ConnectWalletDiv = styled.div`
   width: 100%;
-  margin-right: 8.7%;
+
   @media (max-width: 768px) {
     margin-right: 0;
   }
