@@ -12,11 +12,11 @@ import { useWallet } from 'use-wallet'
 
 function Header() {
   const wallet = useWallet()
-  console.log('wallet >>>', wallet)
+  // console.log('wallet >>>', wallet)
 
   const dispatch = useDispatch()
   const address = useSelector((state) => state.authUser.address)
-  console.log(address)
+  // console.log(address)
   // const networkId = useSelector(state => state.authUser.networkId);
 
   const onConnectClick = async () => {
@@ -69,7 +69,7 @@ function Header() {
             </Nav.Link>
             <Nav.Link
               className='menu-item'
-              href='https://$888dao.medium.com/introducing-$888-dao-$888-6c973279dad5'
+              href='#'
               activestyle={{ color: '#ffffff' }}
               target='_blank'
               rel='noreferrer'

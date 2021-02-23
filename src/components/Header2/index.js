@@ -69,7 +69,7 @@ function Header() {
             </Nav.Link>
             <Nav.Link
               className='menu-item'
-              href='https://$888dao.medium.com/introducing-$888-dao-$888-6c973279dad5'
+              href='#'
               activestyle={{ color: '#ffffff' }}
               target='_blank'
               rel='noreferrer'
