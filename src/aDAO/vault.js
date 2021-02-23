@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js';
 import { vaultContract } from './contracts';
 import { callMethod, bnDivdedByDecimals, secondToDate, bnToDec } from './utils';
 import { getLPBalance, getLPTotalSupply, getLPTVL } from './pancakev2pair';
-import { get$888Price } from '../subgraphs/api';
+import { getaDAOPrice } from '../subgraphs/api';
 
 import { web3 } from './web3';
 
@@ -22,7 +22,8 @@ export const getSwapReward = async (address) => {
     return { pending: new BigNumber(result.pending), available: new BigNumber(result.available) };
 }
 
-export const get$888Reward = async (address) => {
+export const getaDAOReward = async (address) => {
+    console.log(vaultContract)
     const result = await callMethod(vaultContract.contract.methods['get888Reward'], [address]);
     return { pending: new BigNumber(result.pending), available: new BigNumber(result.available) };
 }
@@ -61,11 +62,15 @@ export const getStakedUserInfo = async (address) => {
     return { ...result, isLocked: isLocked, endOfLock: endOfLock, stakedAmount: new BigNumber(result.stakedAmount) };
 }
 
-export const getRestTimeFor$888Rewards = async (address) => {
+export const getRestTimeForaDAORewards = async (address) => {
     const result = await callMethod(vaultContract.contract.methods['_stakers'], [address]);
-    const blockCountFor2weeks = new BigNumber(await callMethod(vaultContract.contract.methods['_claimPeriodFor$888Reward'], []));
+    console.log(result)
+    const blockCountFor2weeks = new BigNumber(await callMethod(vaultContract.contract.methods['_claimPeriodFor888Reward'], []));
+    console.log(blockCountFor2weeks)
     const currentBlockNumber = new BigNumber(await web3.eth.getBlockNumber());
-    const restTime = new BigNumber(13.3).times(blockCountFor2weeks.minus(currentBlockNumber.minus(result.lastClimedBlockFor$888Reward)));
+    console.log(currentBlockNumber)
+    const restTime = new BigNumber(13.3).times(blockCountFor2weeks.minus(currentBlockNumber.minus(result.lastClimedBlockForaDAOReward)));
+    console.log(restTime)
     return secondToDate(restTime.toNumber());
 }
 
@@ -176,7 +181,7 @@ export const getAPY = async () => {
     const stakedLpAmount = await getLPBalance(vaultContract.address);
     const LPTotalSupply = await getLPTotalSupply();
     const LPTVL = await getLPTVL();
-    const $888Price = await get$888Price();
+    const aDAOPrice = await getaDAOPrice();
 
     if (LPTotalSupply.eq(new BigNumber(0))) {
         return 0;
@@ -187,8 +192,8 @@ export const getAPY = async () => {
         return 0;
     }
 
-    const $888PerBlock = new BigNumber(await callMethod(vaultContract.contract.methods['get888PerBlockFor888Reward'],[]));
+    const aDAOPerBlock = new BigNumber(await callMethod(vaultContract.contract.methods['get888PerBlockFor888Reward'],[]));
     const blockCountForYear = new BigNumber(2372500);
     
-    return (1 + bnToDec($888PerBlock.times(blockCountForYear).div(poolTvl)) * $888Price) * 100;
+    return (1 + bnToDec(aDAOPerBlock.times(blockCountForYear).div(poolTvl)) * aDAOPrice) * 100;
 }

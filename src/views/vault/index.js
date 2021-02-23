@@ -8,39 +8,39 @@ import {
   bnDivdedByDecimals,
   getBNBBalance,
   bnToDec,
-} from '../../$888/utils'
+} from '../../aDAO/utils'
 import {
   getCirculatingSupply,
   getTotalSupply,
   getBalance,
-} from '../../$888/token'
+} from '../../aDAO/token'
 import {
   getTotalStakedAmount,
   getUserTotalStakedAmount,
   getMinimumDepositAmount,
   getSwapReward,
-  get$888Reward,
+  getaDAOReward,
   getAllocPointForWBNB,
   getAllocPointForBTCB,
   getAllocPointForBIFI,
   getTVL,
-  getRestTimeFor$888Rewards,
+  getRestTimeForaDAORewards,
   getRestTimeForSwapRewards,
   getIsEnalbledLock,
   getStakedUserInfo,
   getAPY,
   getBurnFee,
   getEarlyUnstakeFee,
-} from '../../$888/vault'
-import { get$888Price, getMarketcap } from '../../subgraphs/api'
+} from '../../aDAO/vault'
+import { getaDAOPrice, getMarketcap } from '../../subgraphs/api'
 import {
   networkId,
   vaultContract,
-  $888BNBPairContract,
+  aDAOBNBPairContract,
   bifiBNBPairContract,
   btcbBNBPairContract,
-} from '../../$888/contracts'
-import { getAmountOut } from '../../$888/pancakev2pair'
+} from '../../aDAO/contracts'
+import { getAmountOut } from '../../aDAO/pancakev2pair'
 import { Row, Col } from 'react-bootstrap'
 import { NotificationManager } from 'react-notifications'
 import Page from '../../components/Page'
@@ -54,7 +54,7 @@ import ConfirmModal from '../../components/ConfirmModal'
 import 'react-notifications/lib/notifications.css'
 import { css } from '@emotion/core'
 import ClockLoader from 'react-spinners/ClockLoader'
-import { sendTransaction, mobileSendTransaction } from '../../$888/utils'
+import { sendTransaction, mobileSendTransaction } from '../../aDAO/utils'
 import { isMobile } from 'react-device-detect'
 import './index.css'
 import Header from '../../components/Header'
@@ -104,7 +104,7 @@ function Vault() {
   const [circulatingSupply, setCirculatingSupply] = useState(new BigNumber(0))
   const [tvl, setTVL] = useState(new BigNumber(0))
 
-  const [$888Price, set$888Price] = useState(0)
+  const [aDAOPrice, setaDAOPrice] = useState(0)
   const [marketcap, setMarketcap] = useState(0)
   const [totalStakedAmount, setTotalStakedAmount] = useState(new BigNumber(0))
   const [userBalance, setUserBalance] = useState(new BigNumber(0))
@@ -114,7 +114,7 @@ function Vault() {
   const [minDepositAmount, setMinDepositAmount] = useState(new BigNumber(0))
   const [userBNBBalance, setUserBNBBalance] = useState(new BigNumber(0))
   const [userSwapReward, setUserSwapReward] = useState({})
-  const [user$888Reward, setUser$888Reward] = useState({})
+  const [useraDAOReward, setUseraDAOReward] = useState({})
   const [isEnabledLock, setIsEnalbledLock] = useState(true)
   const [stakedUserInfo, setStakedUserInfo] = useState({})
 
@@ -132,8 +132,8 @@ function Vault() {
   const [userBtcbPendingReward, setUserBtcbPendingReward] = useState(0)
   const [userBifiPendingReward, setUserBifiPendingReward] = useState(0)
 
-  const [pending$888Value, setPending$888Value] = useState(new BigNumber(0))
-  const [available$888Value, setAvailable$888Value] = useState(new BigNumber(0))
+  const [pendingaDAOValue, setPendingaDAOValue] = useState(new BigNumber(0))
+  const [availableaDAOValue, setAvailableaDAOValue] = useState(new BigNumber(0))
 
   const [timerID, setTimerID] = useState(0)
   const [showConfirmModal, setShowConfirmModal] = useState(false)
@@ -154,14 +154,14 @@ function Vault() {
       setTotalSupply(await getTotalSupply())
       setCirculatingSupply(await getCirculatingSupply())
       setTVL(await getTVL())
-      set$888Price(await get$888Price())
+      setaDAOPrice(await getaDAOPrice())
       setMarketcap(await getMarketcap())
       setTotalStakedAmount(await getTotalStakedAmount())
       setUserBalance(await getBalance(address))
       setUserTotalStakedAmount(await getUserTotalStakedAmount(address))
       setUserBNBBalance(await getBNBBalance(address))
       setUserSwapReward(await getSwapReward(address))
-      setUser$888Reward(await get$888Reward(address))
+      setUseraDAOReward(await getaDAOReward(address))
       setIsEnalbledLock(await getIsEnalbledLock())
       setStakedUserInfo(await getStakedUserInfo(address))
       setApy(await getAPY())
@@ -183,10 +183,10 @@ function Vault() {
   }, [address])
 
   useEffect(() => {
-    const bn$888Price = new BigNumber($888Price)
-    setPending$888Value(bn$888Price.times(user$888Reward.pending))
-    setAvailable$888Value(bn$888Price.times(user$888Reward.available))
-  }, [user$888Reward, $888Price])
+    const bnaDAOPrice = new BigNumber(aDAOPrice)
+    setPendingaDAOValue(bnaDAOPrice.times(useraDAOReward.pending))
+    setAvailableaDAOValue(bnaDAOPrice.times(useraDAOReward.available))
+  }, [useraDAOReward, aDAOPrice])
 
   useEffect(async () => {
     if (
@@ -194,7 +194,7 @@ function Vault() {
       userSwapReward.pending.isGreaterThan(new BigNumber(0))
     ) {
       const wbnbEstimateAmount = await getAmountOut(
-        $888BNBPairContract,
+        aDAOBNBPairContract,
         bnToDec(userSwapReward.pending),
         true
       )
@@ -325,22 +325,22 @@ function Vault() {
       )
   }
 
-  const onClaimAvailable$888Reward = async (event) => {
+  const onClaimAvailableaDAOReward = async (event) => {
     if (address == null || progress) return
 
-    const available = user$888Reward.available
+    const available = useraDAOReward.available
 
     if (!available || available.lte(new BigNumber(0))) {
-      NotificationManager.warning(`There are no available $888 rewards.`)
+      NotificationManager.warning(`There are no available aDAO rewards.`)
       return
     }
 
     setProgress(true)
 
     const encodedABI = vaultContract.contract.methods
-      .claim$888AvailableReward()
+      .claimaDAOAvailableReward()
       .encodeABI()
-    transactionType = 'claim$888AvailableReward'
+    transactionType = 'claimaDAOAvailableReward'
 
     if (isMobile)
       await mobileSendTransaction(
@@ -360,8 +360,8 @@ function Vault() {
       )
   }
 
-  const onShowConfirmModalFor$888 = async () => {
-    const restTime = await getRestTimeFor$888Rewards(address)
+  const onShowConfirmModalForaDAO = async () => {
+    const restTime = await getRestTimeForaDAORewards(address)
     setShowConfirmModal(true)
     setModalTitle('Notes')
     setIsTreasury(true)
@@ -412,7 +412,7 @@ function Vault() {
   useEffect(async () => {
     if (isConfirmed === true) {
       if (isTreasury) {
-        await onClaim$888Reward()
+        await onClaimaDAOReward()
       } else if (isUnstake) {
         await onUnstake()
         setIsUnstake(false)
@@ -423,21 +423,21 @@ function Vault() {
     }
   }, [isConfirmed])
 
-  const onClaim$888Reward = async (event) => {
-    const rewards = user$888Reward.pending.plus(user$888Reward.available)
+  const onClaimaDAOReward = async (event) => {
+    const rewards = useraDAOReward.pending.plus(useraDAOReward.available)
     if (address == null || progress) return
 
     if (!rewards || rewards.lte(new BigNumber(0))) {
-      NotificationManager.warning(`There are no $888 rewards.`)
+      NotificationManager.warning(`There are no aDAO rewards.`)
       return
     }
 
     setProgress(true)
 
     const encodedABI = vaultContract.contract.methods
-      .claim$888Reward()
+      .claim888Reward()
       .encodeABI()
-    transactionType = 'claim$888Reward'
+    transactionType = 'claim888Reward'
 
     if (isMobile)
       await mobileSendTransaction(
@@ -611,7 +611,7 @@ function Vault() {
 
             <Form title='aDAO PRICE'>
               <span className='numberSpan'>
-                ${new BigNumber($888Price).toFormat(2)}
+                ${new BigNumber(aDAOPrice).toFormat(2)}
               </span>
             </Form>
 
@@ -679,12 +679,12 @@ function Vault() {
                       <Label
                         label='Pending aDAO'
                         balance={
-                          user$888Reward.pending
-                            ? // bnDivdedByDecimals(user$888Reward.pending).toFormat(
+                          useraDAOReward.pending
+                            ? // bnDivdedByDecimals(useraDAOReward.pending).toFormat(
                               //     4
                               //   ) +
                               ' $' +
-                              bnDivdedByDecimals(pending$888Value).toFormat(0) +
+                              bnDivdedByDecimals(pendingaDAOValue).toFormat(0) +
                               ''
                             : 0 + '($0)'
                         }
@@ -693,12 +693,12 @@ function Vault() {
                       <Label
                         label='Available aDAO'
                         balance={
-                          user$888Reward.available
+                          useraDAOReward.available
                             ? // bnDivdedByDecimals(
-                              //     user$888Reward.available
+                              //     useraDAOReward.available
                               //   ).toFormat(4) +
                               ' $' +
-                              bnDivdedByDecimals(available$888Value).toFormat(
+                              bnDivdedByDecimals(availableaDAOValue).toFormat(
                                 0
                               ) +
                               ''
@@ -708,14 +708,14 @@ function Vault() {
                     </Grid>
                     <Grid>
                       <Button
-                        onClickHandler={onClaimAvailable$888Reward}
+                        onClickHandler={onClaimAvailableaDAOReward}
                         color='white'
                       >
                         Claim Available
                       </Button>
 
                       <Button
-                        onClickHandler={onShowConfirmModalFor$888}
+                        onClickHandler={onShowConfirmModalForaDAO}
                         color='red'
                       >
                         Claim Early
@@ -856,7 +856,7 @@ const SideContainerRight = styled.div`
   @media (max-width: 768px) {
     width: 100%;
     margin-left: 0;
-    margin-top 15px;
+    margin-top: 15px;
   }
 `
 const StakeContainer = styled.div`
