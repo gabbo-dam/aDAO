@@ -362,32 +362,44 @@ function Vault() {
 
   const onShowConfirmModalForaDAO = async () => {
     const restTime = await getRestTimeForaDAORewards(address)
+    if (restTime === '0 seconds') {
+      NotificationManager.warning(
+        `There are no available aDAO rewards.`
+      );
+      return;
+    }
     setShowConfirmModal(true)
     setModalTitle('Notes')
     setIsTreasury(true)
     setIsUnstake(false)
     setModalContent(
-      'Early withdraw will burn ' +
+      "Early withdrawal of your rewards will result in a " +
         burnFee +
-        '% of rewards. Approximately, you should wait for ' +
+        "% burn of your rewards. You should wait " +
         restTime +
-        ' in order to get rewards without fee.'
-    )
+        "  more days to claim your rewards without the penalty. Do you want to continue?"
+    );
   }
 
   const onShowConfirmModalForQuarterly = async () => {
     const restTime = await getRestTimeForSwapRewards(address)
+    if (restTime === '0 seconds') {
+      NotificationManager.warning(
+        `There are no available WBNB/BIFI/BTCB rewards.`
+      );
+      return;
+    }
     setShowConfirmModal(true)
     setModalTitle('Notes')
     setIsTreasury(false)
     setIsUnstake(false)
     setModalContent(
-      'Early withdraw will burn ' +
+      "Early withdrawal of your Red Envelope rewards will result in a " +
         burnFee +
-        '% of rewards. Approximately, you should wait for ' +
+        "% burn of your rewards. You should wait " +
         restTime +
-        ' in order to get rewards without fee.'
-    )
+        " more days to claim your rewards without the penalty. Do you want to continue?"
+    );
   }
 
   const onShowConfirmModalForUnstake = async () => {
@@ -396,14 +408,17 @@ function Vault() {
         setShowConfirmModal(true)
         setModalTitle('Notes')
         setModalContent(
-          'Approximately pool has been locked till ' +
+          "Approximately pool has been locked till " +
             stakedUserInfo.endOfLock +
-            '. If you want to unstake early, ' +
+            ". If you want to unstake early, " +
             earlyUnstakeFee +
-            '% of LP token will go to DAO treasury, and ' +
+            "% of LP token will go to DAO treasury, and " +
             burnFee +
-            '% of pending rewards will be burned.'
-        )
+            "% of pending rewards will be burned."
+        );
+      } else {
+        await onUnstake();
+        setIsUnstake(false);
       }
     }
     setIsUnstake(true)
@@ -648,7 +663,7 @@ function Vault() {
                     />
 
                     <Button onClickHandler={onStake} color='red'>
-                      Deposite / Stake
+                      Deposit / Stake
                     </Button>
                   </StakeContainer>
                   <StakeContainer>

@@ -65,6 +65,9 @@ export const getStakedUserInfo = async (address) => {
 export const getRestTimeForaDAORewards = async (address) => {
     const result = await callMethod(vaultContract.contract.methods['_stakers'], [address]);
     console.log(result)
+    if (result.lastClimedBlockFor888Reward === '0') {
+        return secondToDate(0);
+    }
     const blockCountFor2weeks = new BigNumber(await callMethod(vaultContract.contract.methods['_claimPeriodFor888Reward'], []));
     console.log(blockCountFor2weeks)
     const currentBlockNumber = new BigNumber(await web3.eth.getBlockNumber());
@@ -76,6 +79,9 @@ export const getRestTimeForaDAORewards = async (address) => {
 
 export const getRestTimeForSwapRewards = async (address) => {
     const result = await callMethod(vaultContract.contract.methods['_stakers'], [address]);
+    if (result.lastClimedBlockForSwapReward === '0') {
+        return secondToDate(0);
+    }
     const blockCountFor3months = new BigNumber(await callMethod(vaultContract.contract.methods['_claimPeriodForSwapReward'], []));
     const currentBlockNumber = new BigNumber(await web3.eth.getBlockNumber());
     const restTime = new BigNumber(13.3).times(blockCountFor3months.minus(currentBlockNumber.minus(result.lastClimedBlockForSwapReward)));

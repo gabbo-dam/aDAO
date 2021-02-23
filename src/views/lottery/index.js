@@ -97,10 +97,10 @@ function Lottery() {
               <PageHeader title='aDAO LOTTERY' src='none' alt='' />
               <Form2 title='How it works'>
                 <span className='textSpan' style={{textTransform: 'none'}}>
-                  We take {lotteryFee}% from the collected taxfees and put it
-                  inside this lottery pool, each time the pool reaches a value
-                  of {lotteryLimit} USD a random LP staker gets selected as the
-                  winner. Winner takes all!
+                  {lotteryFee}% of the collected tax from staking rewards is
+                  added to the lottery pool. Each time the lottery pool reaches
+                  a value of ${lotteryLimit} USD, a random LP staker gets
+                  selected as the winner. Winner takes all!
                 </span>
               </Form2>
             </StyledSection>
