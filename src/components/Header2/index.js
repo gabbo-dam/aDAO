@@ -69,7 +69,7 @@ function Header() {
             </Nav.Link>
             <Nav.Link
               className='menu-item'
-              href='https://aDAOdao.medium.com/introducing-aDAO-dao-aDAO-6c973279dad5'
+              href='#'
               activestyle={{ color: '#ffffff' }}
               target='_blank'
               rel='noreferrer'

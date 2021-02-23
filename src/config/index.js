@@ -12,11 +12,11 @@ const config = {
   networkId: '56', //   process.env.REACT_APP_NETWORK_ID
   contractAddress: {
     aDAO: {
-      56: '0x1829CbA3DbE1468c1b37459a0EF3aF3218798f65',
+      56: '0xBFb2857474A48b345dD1c2F67ba57C28caa630fA',
       97: '0xB5526B53050282474B3dEB5Aca92519bB7A60A33',
     },
     vault: {
-      56: '0x3C27385710A2a579C6aF2d39B15533EDF9A6a2cF',
+      56: '0x56589dCFd44273FaCfFaf55C113B21FD2169C22e',
       97: '0x6bC9271B45926317B4c07D0fFE1631dd811C16f3',
     },
     wbnb: {
@@ -36,7 +36,7 @@ const config = {
       97: '0xB5526B53050282474B3dEB5Aca92519bB7A60A33',
     },
     aDAOBNBPair: {
-      56: '0x42366997757fa22f70d3526d91b44a3a1efb0846',
+      56: '0x16B2E4B83Cca634beB3902e592B0af71022d3C0f',
       97: '0xB5526B53050282474B3dEB5Aca92519bB7A60A33',
     },
     btcbBNBPair: {
@@ -44,7 +44,7 @@ const config = {
       97: '0xB5526B53050282474B3dEB5Aca92519bB7A60A33',
     },
     bifiBNBPair: {
-      56: '',
+      56: '0xd132d2c24f29ee8abb64a66559d1b7aa627bd7fd',
       97: '0xB5526B53050282474B3dEB5Aca92519bB7A60A33',
     },
     busdBNBPair: {
