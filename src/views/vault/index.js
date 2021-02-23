@@ -825,7 +825,7 @@ function Vault() {
                         <span>
                           Please change your MetaMask to access the{' '}
                           {networkId === '56' ? 'Main' : 'Testnet'} Binance
-                          Smart Chain Testnet.
+                          Smart Chain.
                         </span>
                       </Col>
                     </Row>
