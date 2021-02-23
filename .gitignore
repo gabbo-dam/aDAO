@@ -26,12 +26,12 @@ yarn-error.log*
 yarn.lock
 package-lock.json
 
-/src/$888/abis/presaleContract-main.json
-/src/$888/abis/tokenContract-main.json
-/src/$888/abis/vaultContract-main.json
-/src/$888/abis/presaleContract-test.json
-/src/$888/abis/tokenContract-test.json
-/src/$888/abis/vaultContract-test.json
+/src/aDAO/abis/presaleContract-main.json
+/src/aDAO/abis/tokenContract-main.json
+/src/aDAO/abis/vaultContract-main.json
+/src/aDAO/abis/presaleContract-test.json
+/src/aDAO/abis/tokenContract-test.json
+/src/aDAO/abis/vaultContract-test.json
 
 # Local Netlify folder
 .netlify

@@ -2,8 +2,8 @@
 import React, { useCallback, useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import BigNumber from 'bignumber.js'
-import { get$888Price } from '../../subgraphs/api'
-import { networkId } from '../../$888/contracts'
+import { getaDAOPrice } from '../../subgraphs/api'
+import { networkId } from '../../aDAO/contracts'
 import {
   getWinners,
   getWinnersInfo,
@@ -11,8 +11,8 @@ import {
   getLotteryTotalPaidOut,
   getLotteryFee,
   getLotteryLimit,
-} from '../../$888/vault'
-import { bnToDec } from '../../$888/utils'
+} from '../../aDAO/vault'
+import { bnToDec } from '../../aDAO/utils'
 import { Row, Col } from 'react-bootstrap'
 import PageHeader from '../../components/PageHeader'
 import Form from '../../components/Form'
@@ -45,7 +45,7 @@ function Lottery() {
     },
   })
 
-  const [$888Price, set$888Price] = useState(0)
+  const [aDAOPrice, setaDAOPrice] = useState(0)
   const [winners, setWinners] = useState(0)
   const [lotteryAmount, setLotteryAmount] = useState(new BigNumber(0))
   const [winnersInfo, setWinnersInfo] = useState([])
@@ -59,7 +59,7 @@ function Lottery() {
 
   const fetchAllDataFromContract = useCallback(
     async (firstFlag = false, transactionType = '') => {
-      set$888Price(await get$888Price())
+      setaDAOPrice(await getaDAOPrice())
       setWinners(await getWinners())
       setLotteryAmount(await getCollectedLotteryAmount())
       setWinnersInfo(await getWinnersInfo())
@@ -84,9 +84,9 @@ function Lottery() {
   }, [address])
 
   useEffect(() => {
-    setPoolValue(new BigNumber($888Price).times(lotteryAmount))
-    setTotalPaidOutValue(new BigNumber($888Price).times(totalPaidOut))
-  }, [$888Price, lotteryAmount, totalPaidOut])
+    setPoolValue(new BigNumber(aDAOPrice).times(lotteryAmount))
+    setTotalPaidOutValue(new BigNumber(aDAOPrice).times(totalPaidOut))
+  }, [aDAOPrice, lotteryAmount, totalPaidOut])
 
   return (
     <Container>
@@ -96,11 +96,11 @@ function Lottery() {
             <StyledSection>
               <PageHeader title='aDAO LOTTERY' src='none' alt='' />
               <Form2 title='How it works'>
-                <span className='textSpan'>
-                  We take {lotteryFee}% from the collected taxfees and put it
-                  inside this lottery pool, each time the pool reaches a value
-                  of {lotteryLimit} USD a random LP staker gets selected as the
-                  winner. Winner takes all!
+                <span className='textSpan' style={{textTransform: 'none'}}>
+                  {lotteryFee}% of the collected tax from staking rewards is
+                  added to the lottery pool. Each time the lottery pool reaches
+                  a value of ${lotteryLimit} USD, a random LP staker gets
+                  selected as the winner. Winner takes all!
                 </span>
               </Form2>
             </StyledSection>
@@ -165,7 +165,7 @@ function Lottery() {
                       <div style={{ fontSize: '16px' }}>
                         {bnToDec(element.amount).toFixed(4)} $aDAO ($
                         {bnToDec(
-                          new BigNumber($888Price).times(element.amount)
+                          new BigNumber(aDAOPrice).times(element.amount)
                         ).toFixed(2)}
                         )
                       </div>

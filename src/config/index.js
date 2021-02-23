@@ -11,7 +11,7 @@ const config = {
   web3Provider: web3Provider,
   networkId: '56', //   process.env.REACT_APP_NETWORK_ID
   contractAddress: {
-    $888: {
+    aDAO: {
       56: '0x1829CbA3DbE1468c1b37459a0EF3aF3218798f65',
       97: '0xB5526B53050282474B3dEB5Aca92519bB7A60A33',
     },
@@ -35,7 +35,7 @@ const config = {
       56: '0xe9e7cea3dedca5984780bafc599bd69add087d56',
       97: '0xB5526B53050282474B3dEB5Aca92519bB7A60A33',
     },
-    $888BNBPair: {
+    aDAOBNBPair: {
       56: '0x42366997757fa22f70d3526d91b44a3a1efb0846',
       97: '0xB5526B53050282474B3dEB5Aca92519bB7A60A33',
     },
