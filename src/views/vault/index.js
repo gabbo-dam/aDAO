@@ -645,11 +645,7 @@ function Vault() {
               <PageHeader title='aDAO-BNB LP VAULT' src='none' alt='' />
 
               <Form2
-                title={
-                  'STAKE (APY: ' +
-                  new BigNumber(apy).dp(2, 0).toString(10) +
-                  '%)'
-                }
+                title={`STAKE (APY: ${new BigNumber(apy).dp(2, 0).toString(10).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} %)`}
                 style={{ background: 'none' }}
               >
                 <Grid>
